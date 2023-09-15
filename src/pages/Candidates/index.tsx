@@ -1,29 +1,31 @@
-import React from 'react'
+import React, { useState } from "react";
 
-import CandidateCard from '../../components/CandidateCard'
-import * as S from "./style"
-import axios from 'axios'
+import * as S from "./style";
+import { Box } from "@mui/material";
+import CandidateCard from "../../components/CandidateCard";
+import CandidateService from "../../services/candidates";
 
 function Candidates() {
-    const [candidates, setCandidates] = React.useState([])
-    React.useEffect(() => {
-        axios.get('http://localhost:3001/candidates').then((res: any) => {
-            setCandidates(res.data)
-        })
-    }, [])
+  const [candidates, setCandidates] = useState([]);
 
+  React.useEffect(() => {
+    CandidateService.GetAll().then((res: any) => {
+      setCandidates(res.data);
+    });
+  }, []);
 
-    return (
-        <S.Container>
-            {
-                candidates.length &&
-                candidates.map((candidate: any) => {
-                    return <CandidateCard key={candidate.id} candidate={{ ...candidate }} />
-                }
-                )
-            }
-        </S.Container>
-    )
+  return (
+    <S.Container>
+      <Box>
+        {candidates.length &&
+          candidates.map((candidate: any) => {
+            return (
+              <CandidateCard key={candidate.id} candidate={{ ...candidate }} />
+            );
+          })}
+      </Box>
+    </S.Container>
+  );
 }
 
-export default Candidates
+export default Candidates;
