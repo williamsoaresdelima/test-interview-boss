@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import CandidatesService from "../../services/candidates";
+import ProfilesService from "../../services/Profiles";
 
 function Input({ send }: { send: (value: string) => void }) {
   const [value, setValue] = useState("");
@@ -14,7 +14,7 @@ function Input({ send }: { send: (value: string) => void }) {
 
   React.useEffect(() => {
     if (id) {
-      CandidatesService.GetById(+id).then((res: any) => {
+      ProfilesService.GetById(+id).then((res: any) => {
         setCandidate(res.data);
       });
     }

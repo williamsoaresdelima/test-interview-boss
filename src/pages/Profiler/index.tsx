@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
-import CandidateService from "../../services/candidates";
+import ProfilesService from "../../services/Profiles";
 
 function Profiler() {
   const [candidate, setCandidate] = React.useState({
@@ -14,7 +14,7 @@ function Profiler() {
 
   React.useEffect(() => {
     if (id) {
-      CandidateService.GetById(+id).then((res: any) => {
+      ProfilesService.GetById(+id).then((res: any) => {
         setCandidate(res.data);
       });
     }

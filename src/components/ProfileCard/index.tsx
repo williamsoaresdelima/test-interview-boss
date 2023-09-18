@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, CardActions, CardContent } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-function CandidateCard({ candidate }: any) {
+function ProfileCard({ profile }: any) {
   const navigate = useNavigate();
 
   const navigateTo = (id: number) => {
@@ -17,31 +17,34 @@ function CandidateCard({ candidate }: any) {
     <Card sx={{ minWidth: 275 }} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="div">
-          {candidate.name}
+          {profile.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {candidate.email}
+          {profile.email}
         </Typography>
-        <Typography variant="body2">{candidate.phoneNumber}</Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          {profile.description}
+        </Typography>
+        <Typography variant="body2">{profile.phoneNumber}</Typography>
       </CardContent>
       <CardActions>
         <Button
           variant="contained"
-          onClick={() => navigateTo(candidate.id)}
+          onClick={() => navigateTo(profile.id)}
           size="small"
         >
-          See More
+          See Profile
         </Button>
         <Button
           variant="contained"
-          onClick={() => chatWith(candidate.id)}
+          onClick={() => chatWith(profile.id)}
           size="small"
         >
-          Chat with {candidate.name}
+          Chat with {profile.name}
         </Button>
       </CardActions>
     </Card>
   );
 }
 
-export default CandidateCard;
+export default ProfileCard;
